@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión Eco-Huerta | ProA</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <style>
+        :root {
+            --bg-main: #f0f4f1;
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --primary-light: #e8f5e9;
+            --accent: #4caf50;
+            --text-main: #1c2d1f;
+            --text-muted: #607363;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-color: #d2e3d4;
+            --radius-lg: 24px;
+            --radius-md: 14px;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+            --shadow-md: 0 12px 32px rgba(46, 125, 50, 0.1);
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+
+        body {
+            background-color: var(--bg-main);
+            background-image: 
+                radial-gradient(at 20% 20%, rgba(76, 175, 80, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 80%, rgba(46, 125, 50, 0.1) 0px, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            color: var(--text-main);
+        }
+
+
+        /* Contenedor Principal */
+        .menu-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            padding: 48px 36px;
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+
+        /* Logo y Header */
+        .brand-header {
+            margin-bottom: 28px;
+        }
+
+
+        .logo-wrapper {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 16px auto;
+            border-radius: 20px;
+            padding: 6px;
+            background: white;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+
+        h1 {
+            color: var(--primary-dark);
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+
+        /* Botones / Accesos */
+        .nav-group {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 32px 0;
+        }
+
+
+        .btn-menu {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 20px;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid transparent;
+        }
+
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        .btn-icon {
+            font-size: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+
+        .arrow-icon {
+            font-size: 16px;
+            transition: transform 0.2s ease;
+        }
+
+
+        /* Estilos Botón Principal (Alta) */
+        .btn-alta {
+            background: var(--primary);
+            color: white;
+        }
+
+
+        .btn-alta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.25);
+        }
+
+
+        .btn-alta:hover .arrow-icon {
+            transform: translateX(4px);
+        }
+
+
+        /* Estilos Botón Secundario (Mostrar/Modificar) */
+        .btn-vista {
+            background: white;
+            color: var(--text-main);
+            border-color: var(--border-color);
+        }
+
+
+        .btn-vista .btn-icon {
+            background: var(--primary-light);
+        }
+
+
+        .btn-vista:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+        }
+
+
+        .btn-vista:hover .arrow-icon {
+            transform: translateX(4px);
+        }
+
+
+        /* Footer */
+        .footer {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <main class="menu-card">
+
+
+        <!-- LOGO Y TÍTULOS -->
+        <header class="brand-header">
+            <div class="logo-wrapper">
+                <img src="logo proa.jfif" class="logo" alt="Logo Escuela Experimental ProA">
+            </div>
+            <h1>Sistema de Gestión</h1>
+            <p class="subtitle">Escuela Experimental ProA • Proyecto Huerta</p>
+        </header>
+
+
+        <!-- NAVEGACIÓN PRINCIPAL -->
+        <nav class="nav-group">
+            <!-- BOTÓN ALTA -->
+            <a href="insertar.php" class="btn-menu btn-alta">
+                <div class="btn-content">
+                    <span class="btn-icon">➕</span>
+                    <span>Alta de Usuario</span>
+                </div>
+                <span class="arrow-icon">→</span>
+            </a>
+
+
+            <!-- BOTÓN MOSTRAR / MODIFICAR -->
+            <a href="mostrar.php" class="btn-menu btn-vista">
+                <div class="btn-content">
+                    <span class="btn-icon">📋</span>
+                    <span>Mostrar / Modificar</span>
+                </div>
+                <span class="arrow-icon">→</span>
+            </a>
+        </nav>
+
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="footer">
+            © Escuela Experimental ProA
+        </footer>
+
+
+    </main>
+
+
+</body>
+</html>
