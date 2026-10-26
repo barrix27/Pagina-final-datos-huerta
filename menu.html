@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal | Eco-Huerta ProA</title>
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <style>
+        :root {
+            --bg-main: #f0f4f1;
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --primary-light: #e8f5e9;
+            --accent: #4caf50;
+            --text-main: #1c2d1f;
+            --text-muted: #607363;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-color: #d2e3d4;
+            --radius-lg: 24px;
+            --radius-md: 14px;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+            --shadow-md: 0 12px 32px rgba(46, 125, 50, 0.1);
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+
+        body {
+            background-color: var(--bg-main);
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(76, 175, 80, 0.08) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(46, 125, 50, 0.08) 0px, transparent 50%);
+            min-height: 100vh;
+            padding: 30px 20px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* Contenedor Principal */
+        .main-container {
+            width: 100%;
+            max-width: 1100px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .main-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+
+        /* Panel Izquierdo */
+        .welcome-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+
+
+        .logo-wrapper {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            padding: 6px;
+            background: white;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+
+        h1 {
+            color: var(--primary-dark);
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 28px;
+        }
+
+
+        .btn-admin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 320px;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+        }
+
+
+        .btn-admin:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+        }
+
+
+        .description {
+            margin-top: 24px;
+            max-width: 310px;
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        /* Panel Dashboard */
+        .dashboard-panel {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        }
+
+
+        .dashboard-title {
+            color: var(--primary-dark);
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+
+        .dashboard-description {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+
+        /* Preview Iframe */
+        .preview-container {
+            flex: 1;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            min-height: 340px;
+            position: relative;
+        }
+
+
+        .preview-container iframe {
+            width: 140%;
+            height: 140%;
+            border: none;
+            transform: scale(0.714);
+            transform-origin: top left;
+        }
+
+
+        .preview-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.01);
+            transition: background 0.2s ease;
+        }
+
+
+        .preview-overlay:hover {
+            background: rgba(46, 125, 50, 0.04);
+        }
+
+
+        .btn-dashboard {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
+            margin-top: 16px;
+            padding: 14px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            transition: all 0.25s ease;
+        }
+
+
+        .btn-dashboard:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+        }
+
+
+        /* Footer */
+        .footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+
+
+        /* Responsive */
+        @media(max-width: 850px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 24px;
+                gap: 24px;
+            }
+
+
+            .preview-container {
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+<div class="main-container">
+
+
+    <!-- PANEL IZQUIERDO: BIENVENIDA -->
+    <section class="welcome-panel">
+        <div class="logo-wrapper">
+            <img src="logo proa.jfif" class="logo" alt="Logo Escuela Experimental ProA">
+        </div>
+
+
+        <h1>Menú Principal</h1>
+        <p class="subtitle">Escuela Experimental ProA</p>
+
+
+        <a href="index.html" class="btn-admin">
+            <span>⚙️</span> Administración
+        </a>
+
+
+        <p class="description">
+            Accedé al sistema de administración para gestionar usuarios y consultar la información registrada del proyecto.
+        </p>
+    </section>
+
+
+    <!-- PANEL DERECHO: DASHBOARD PREVIEW -->
+    <section class="dashboard-panel">
+        <h2 class="dashboard-title">
+            <span>📊</span> Dashboard
+        </h2>
+        <p class="dashboard-description">
+            Vista previa interactiva del panel de estadísticas
+        </p>
+
+
+        <div class="preview-container">
+            <iframe src="dashboard.php" title="Vista previa del Dashboard"></iframe>
+            <div 
+                class="preview-overlay" 
+                onclick="window.location.href='dashboard.php'" 
+                title="Abrir Dashboard"
+            ></div>
+        </div>
+
+
+        <a href="dashboard.php" class="btn-dashboard">
+            <span>📈</span> Abrir Panel de Control
+        </a>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        © Escuela Experimental ProA
+    </footer>
+
+
+</div>
+
+
+</body>
+</html>
